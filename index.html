@@ -1,3 +1,4 @@
+<!-- ===================== INDEX.HTML ===================== -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,29 +8,35 @@
 <style>
     body {
         margin: 0;
-        font-family: Arial, sans-serif;
-        background-color: #F9F7F2;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #F9F7F2, #E5D3B3);
         color: #2D2D2D;
     }
 
     header {
-        background-color: #8E9AAF;
+        background: #8E9AAF;
         padding: 15px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
     header h1 {
         margin: 0;
+        color: white;
     }
 
     nav a {
         margin: 5px 10px;
         text-decoration: none;
-        color: #2D2D2D;
+        color: white;
         font-weight: bold;
+    }
+
+    nav a:hover {
+        color: #B78D8D;
     }
 
     .search-bar {
@@ -40,104 +47,19 @@
     .search-bar input {
         width: 80%;
         max-width: 500px;
-        padding: 10px;
-        border: 2px solid #E5D3B3;
-        border-radius: 10px;
+        padding: 12px;
+        border-radius: 25px;
+        border: none;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
 
     .container {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 20px;
         padding: 20px;
     }
 
     .card {
-        background: white;
-        border: 2px solid #E5D3B3;
-        border-radius: 15px;
-        padding: 10px;
-        text-align: center;
-        transition: transform 0.2s;
-    }
-
-    .card:hover {
-        transform: scale(1.05);
-    }
-
-    .card img {
-        width: 100%;
-        border-radius: 10px;
-    }
-
-    .btn {
-        background-color: #B78D8D;
-        color: white;
-        border: none;
-        padding: 10px;
-        border-radius: 10px;
-        cursor: pointer;
-    }
-
-    footer {
-        text-align: center;
-        padding: 10px;
-        background-color: #8E9AAF;
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 600px) {
-        header {
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .search-bar input {
-            width: 95%;
-        }
-    }
-</style>
-</head>
-<body>
-
-<header>
-    <h1>MizuInk</h1>
-    <nav>
-        <a href="index.html">Inicio</a>
-        <a href="registro.html">Registro</a>
-        <a href="login.html">Login</a>
-    </nav>
-</header>
-
-<div class="search-bar">
-    <input type="text" placeholder="Buscar manga...">
-</div>
-
-<section class="container">
-    <div class="card">
-        <img src="https://via.placeholder.com/200x300" alt="manga">
-        <h3>Manga 1</h3>
-        <button class="btn">Seguir</button>
-    </div>
-    <div class="card">
-        <img src="https://via.placeholder.com/200x300" alt="manga">
-        <h3>Manga 2</h3>
-        <button class="btn">Seguir</button>
-    </div>
-</section>
-
-<!-- ESPACIO PARA CONEXIÓN A BASE DE DATOS -->
-<script>
-// Aquí irá la lógica para conectar usuarios, mangas y favoritos
-</script>
-
-<footer>
-    <p>MizuInk © 2026</p>
-</footer>
-
-</body>
 </html>
-
-
-
 </html>
