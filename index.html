@@ -9,41 +9,118 @@
 body {
     margin:0;
     font-family:'Segoe UI',sans-serif;
-    background:linear-gradient(135deg,#F9F7F2,#E5D3B3);
+    background:#F9F7F2;
+    color:#2D2D2D;
 }
+
+/* HEADER */
 header {
     background:#8E9AAF;
-    padding:15px;
+    padding:15px 30px;
     display:flex;
     justify-content:space-between;
+    align-items:center;
     color:white;
 }
-.container {
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:20px;
+
+header a {
+    color:white;
+    margin-left:15px;
+    text-decoration:none;
+}
+
+/* HERO */
+.hero {
+    height:300px;
+    background:linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)),
+    url('https://images.unsplash.com/photo-1541562232579-512a21360020');
+    background-size:cover;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:white;
+}
+
+.hero h1 {
+    font-size:40px;
+}
+
+/* BUSCADOR */
+.search {
+    text-align:center;
+    margin:20px;
+}
+
+.search input {
+    width:60%;
+    padding:12px;
+    border-radius:25px;
+    border:1px solid #ccc;
+}
+
+/* SECCIONES */
+.section {
     padding:20px;
 }
+
+.section h2 {
+    margin-bottom:15px;
+}
+
+/* GRID */
+.grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(180px,1fr));
+    gap:20px;
+}
+
+/* CARD */
 .card {
     background:white;
     border-radius:15px;
     overflow:hidden;
     box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    transition:0.3s;
+    cursor:pointer;
 }
-.card img { width:100%; }
-.card h3 { padding:10px; }
+
+.card:hover {
+    transform:translateY(-10px);
+}
+
+.card img {
+    width:100%;
+    height:250px;
+    object-fit:cover;
+}
+
+.card h3 {
+    padding:10px;
+    font-size:16px;
+}
+
+/* BOTON */
 .btn {
+    margin:10px;
+    padding:8px;
     background:#B78D8D;
     border:none;
     color:white;
-    padding:10px;
-    margin:10px;
-    border-radius:10px;
-    cursor:pointer;
+    border-radius:8px;
+    width:calc(100% - 20px);
+}
+
+/* FOOTER */
+footer {
+    text-align:center;
+    padding:15px;
+    background:#8E9AAF;
+    color:white;
 }
 </style>
-</head>
 
+</head>
 <body>
 
 <header>
@@ -54,71 +131,79 @@ header {
     </div>
 </header>
 
-<div class="container" id="mangas">
+<!-- HERO -->
+<section class="hero">
+    <h1>Descubre los mejores mangas BL / Yaoi</h1>
+</section>
 
-    <!-- ===================== MANGAS MANUALES (TEMPORAL) ===================== -->
-    <!-- Puedes copiar este bloque para agregar mangas mientras no usas Firebase -->
-
-    <div class="card">
-        <img src="https://via.placeholder.com/200x300">
-        <h3>Manga de ejemplo</h3>
-        <button class="btn">Seguir</button>
-    </div>
-
+<!-- BUSCADOR -->
+<div class="search">
+    <input type="text" placeholder="Buscar manga...">
 </div>
 
-<!-- ===================== FIREBASE (DESACTIVADO POR AHORA) ===================== -->
-<!--
-<script type="module">
+<!-- POPULARES -->
+<section class="section">
+<h2>🔥 Populares</h2>
 
-// IMPORTACIONES DE FIREBASE
-import { firebaseConfig } from "./firebase-config.js";
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+<div class="grid">
 
-// INICIALIZAR FIREBASE
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth(app);
+<div class="card">
+    <img src="https://i.imgur.com/2yaf2wb.jpg">
+    <h3>Jinx</h3>
+    <button class="btn">Leer</button>
+</div>
 
-// CARGAR MANGAS DESDE BASE DE DATOS
-async function cargarMangas() {
-    const cont = document.getElementById("mangas");
-    cont.innerHTML = "";
+<div class="card">
+    <img src="https://i.imgur.com/4AIQ0hF.jpg">
+    <h3>Painter of the Night</h3>
+    <button class="btn">Leer</button>
+</div>
 
-    const data = await getDocs(collection(db, "mangas"));
+<div class="card">
+    <img src="https://i.imgur.com/l49aYS3.jpg">
+    <h3>Love is an Illusion</h3>
+    <button class="btn">Leer</button>
+</div>
 
-    data.forEach(doc => {
-        const m = doc.data();
-        cont.innerHTML += `
-        <div class="card">
-            <img src="${m.imagen}">
-            <h3>${m.nombre}</h3>
-            <button class="btn">Seguir</button>
-        </div>`;
-    });
-}
+<div class="card">
+    <img src="https://i.imgur.com/GV5m7wZ.jpg">
+    <h3>Semantic Error</h3>
+    <button class="btn">Leer</button>
+</div>
 
-// EJECUTAR CARGA
-cargarMangas();
+</div>
+</section>
 
-// DETECTAR SI EL USUARIO ES ADMIN
-onAuthStateChanged(auth, async (user) => {
-    if(user){
-        const data = await getDocs(collection(db,"usuarios"));
-        data.forEach(d=>{
-            const u = d.data();
-            if(u.uid === user.uid && u.role === "admin"){
-                // REDIRECCIÓN OCULTA AL PANEL ADMIN
-                location.href = "admin.html";
-            }
-        });
-    }
-});
+<!-- NUEVOS -->
+<section class="section">
+<h2>🆕 Nuevos</h2>
 
-</script>
--->
+<div class="grid">
+
+<div class="card">
+    <img src="https://i.imgur.com/HR8Y9Xk.jpg">
+    <h3>Under the Green Light</h3>
+    <button class="btn">Leer</button>
+</div>
+
+<div class="card">
+    <img src="https://i.imgur.com/0y0y0y0.jpg">
+    <h3>Killing Stalking</h3>
+    <button class="btn">Leer</button>
+</div>
+
+<div class="card">
+    <img src="https://i.imgur.com/z7Z3Z3Z.jpg">
+    <h3>Cherry Blossoms After Winter</h3>
+    <button class="btn">Leer</button>
+</div>
+
+</div>
+</section>
+
+<footer>
+    <p>MizuInk © 2026</p>
+</footer>
 
 </body>
 </html>
