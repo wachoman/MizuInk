@@ -1,36 +1,69 @@
-<!-- ===================== ADMIN.HTML ===================== -->
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin</title>
-<style>
-body {font-family:sans-serif;background:#F9F7F2;}
-.panel{padding:20px;}
-button{margin:5px;padding:10px;background:#B78D8D;color:white;border:none;border-radius:10px;}
-</style>
-</head>
-<body>
-<div class="panel">
-<h2>Panel de Administrador</h2>
+<h2>Panel Admin</h2>
 
-<!-- OPCIONES ADMIN -->
-<button>Ver usuarios</button>
-<button>Agregar manga</button>
-<button>Editar manga</button>
-<button>Eliminar manga</button>
-<button>Ver estadísticas</button>
-<button>Gestionar comentarios</button>
-<button>Bloquear usuarios</button>
+<input id="nombre" placeholder="Nombre">
+<input id="imagen" placeholder="URL imagen">
+<button onclick="agregar()">Agregar</button>
 
-<!-- AQUÍ PUEDES HACER CRUD DE MANGAS -->
-<!-- FORMULARIO EJEMPLO -->
-<h3>Agregar Manga</h3>
-<input placeholder="Nombre">
-<input placeholder="URL imagen">
-<button>Guardar</button>
+<div id="lista"></div>
 
-</div>
-</body>
-</html>
+<script type="module">
+import { firebaseConfig } from "./firebase-config.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+
+// PROTECCIÓN
+onAuthStateChanged(auth, async (user)=>{
+    if(!user) return location.href="login.html";
+
+    const data = await getDocs(collection(db,"usuarios"));
+    let admin=false;
+
+    data.forEach(d=>{
+        const u = d.data();
+        if(u.uid===user.uid && u.role==="admin"){
+            admin=true;
+        }
+    });
+
+    if(!admin){
+        alert("No autorizado");
+        location.href="index.html";
+    }
+});
+
+window.agregar = async ()=>{
+    await addDoc(collection(db,"mangas"),{
+        nombre:nombre.value,
+        imagen:imagen.value
+    });
+    cargar();
+};
+
+async function cargar(){
+    const cont=document.getElementById("lista");
+    cont.innerHTML="";
+
+    const data=await getDocs(collection(db,"mangas"));
+
+    data.forEach(d=>{
+        const m=d.data();
+        cont.innerHTML+=`
+        <div>
+            ${m.nombre}
+            <button onclick="eliminar('${d.id}')">X</button>
+        </div>`;
+    });
+}
+
+window.eliminar = async (id)=>{
+    await deleteDoc(doc(db,"mangas",id));
+    cargar();
+};
+
+cargar();
+</script>
