@@ -7,29 +7,31 @@
 
 <style>
 body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #F9F7F2, #E5D3B3);
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background:linear-gradient(135deg,#F9F7F2,#E5D3B3);
 }
 header {
-    background: #8E9AAF;
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    color: white;
+    background:#8E9AAF;
+    padding:15px;
+    display:flex;
+    justify-content:space-between;
+    color:white;
 }
 .container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-    gap: 20px;
-    padding: 20px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+    padding:20px;
 }
 .card {
-    background: white;
-    border-radius: 15px;
-    overflow: hidden;
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
 .card img { width:100%; }
+.card h3 { padding:10px; }
 .btn {
     background:#B78D8D;
     border:none;
@@ -37,6 +39,7 @@ header {
     padding:10px;
     margin:10px;
     border-radius:10px;
+    cursor:pointer;
 }
 </style>
 </head>
@@ -51,22 +54,39 @@ header {
     </div>
 </header>
 
-<div class="container" id="mangas"></div>
+<div class="container" id="mangas">
 
+    <!-- ===================== MANGAS MANUALES (TEMPORAL) ===================== -->
+    <!-- Puedes copiar este bloque para agregar mangas mientras no usas Firebase -->
+
+    <div class="card">
+        <img src="https://via.placeholder.com/200x300">
+        <h3>Manga de ejemplo</h3>
+        <button class="btn">Seguir</button>
+    </div>
+
+</div>
+
+<!-- ===================== FIREBASE (DESACTIVADO POR AHORA) ===================== -->
+<!--
 <script type="module">
+
+// IMPORTACIONES DE FIREBASE
+import { firebaseConfig } from "./firebase-config.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-const firebaseConfig = { /* TU CONFIG */ };
-
+// INICIALIZAR FIREBASE
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-// Cargar mangas
+// CARGAR MANGAS DESDE BASE DE DATOS
 async function cargarMangas() {
     const cont = document.getElementById("mangas");
+    cont.innerHTML = "";
+
     const data = await getDocs(collection(db, "mangas"));
 
     data.forEach(doc => {
@@ -80,22 +100,25 @@ async function cargarMangas() {
     });
 }
 
+// EJECUTAR CARGA
 cargarMangas();
 
-// Detectar admin
+// DETECTAR SI EL USUARIO ES ADMIN
 onAuthStateChanged(auth, async (user) => {
     if(user){
-        const res = await getDocs(collection(db, "usuarios"));
-        res.forEach(doc=>{
-            const u = doc.data();
+        const data = await getDocs(collection(db,"usuarios"));
+        data.forEach(d=>{
+            const u = d.data();
             if(u.uid === user.uid && u.role === "admin"){
-                // Redirección secreta
-                window.location.href = "admin.html";
+                // REDIRECCIÓN OCULTA AL PANEL ADMIN
+                location.href = "admin.html";
             }
         });
     }
 });
+
 </script>
+-->
 
 </body>
 </html>
