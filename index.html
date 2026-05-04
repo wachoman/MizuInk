@@ -18,6 +18,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        flex-wrap: wrap;
     }
 
     header h1 {
@@ -25,7 +26,7 @@
     }
 
     nav a {
-        margin: 0 10px;
+        margin: 5px 10px;
         text-decoration: none;
         color: #2D2D2D;
         font-weight: bold;
@@ -37,7 +38,8 @@
     }
 
     .search-bar input {
-        width: 60%;
+        width: 80%;
+        max-width: 500px;
         padding: 10px;
         border: 2px solid #E5D3B3;
         border-radius: 10px;
@@ -45,7 +47,7 @@
 
     .container {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
         gap: 20px;
         padding: 20px;
     }
@@ -56,6 +58,11 @@
         border-radius: 15px;
         padding: 10px;
         text-align: center;
+        transition: transform 0.2s;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
     }
 
     .card img {
@@ -72,19 +79,22 @@
         cursor: pointer;
     }
 
-    .form-container {
-        max-width: 400px;
-        margin: 30px auto;
-        background: white;
-        padding: 20px;
-        border-radius: 15px;
-        border: 2px solid #E5D3B3;
-    }
-
     footer {
         text-align: center;
         padding: 10px;
         background-color: #8E9AAF;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+        header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .search-bar input {
+            width: 95%;
+        }
     }
 </style>
 </head>
@@ -93,9 +103,9 @@
 <header>
     <h1>MizuInk</h1>
     <nav>
-        <a href="#">Inicio</a>
-        <a href="#registro">Registro</a>
-        <a href="#login">Login</a>
+        <a href="index.html">Inicio</a>
+        <a href="registro.html">Registro</a>
+        <a href="login.html">Login</a>
     </nav>
 </header>
 
@@ -116,23 +126,7 @@
     </div>
 </section>
 
-<section id="registro" class="form-container">
-    <h2>Registro</h2>
-    <input type="text" placeholder="Usuario"><br><br>
-    <input type="email" placeholder="Correo"><br><br>
-    <input type="password" placeholder="Contraseña"><br><br>
-    <button class="btn">Registrarse</button>
-</section>
-
-<section id="login" class="form-container">
-    <h2>Login</h2>
-    <input type="text" placeholder="Usuario"><br><br>
-    <input type="password" placeholder="Contraseña"><br><br>
-    <button class="btn">Ingresar</button>
-</section>
-
 <!-- ESPACIO PARA CONEXIÓN A BASE DE DATOS -->
-<!-- Aquí puedes conectar con backend (Node.js, PHP, Firebase, etc.) -->
 <script>
 // Aquí irá la lógica para conectar usuarios, mangas y favoritos
 </script>
@@ -141,5 +135,96 @@
     <p>MizuInk © 2026</p>
 </footer>
 
+</body>
+</html>
+
+
+<!-- ===================== LOGIN.HTML ===================== -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - MizuInk</title>
+<style>
+body {
+    font-family: Arial;
+    background-color: #F9F7F2;
+}
+.form-container {
+    max-width: 400px;
+    margin: 80px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid #E5D3B3;
+}
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+}
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #B78D8D;
+    color: white;
+    border: none;
+}
+</style>
+</head>
+<body>
+<div class="form-container">
+    <h2>Login</h2>
+    <input type="text" placeholder="Usuario">
+    <input type="password" placeholder="Contraseña">
+    <button>Ingresar</button>
+</div>
+</body>
+</html>
+
+
+<!-- ===================== REGISTRO.HTML ===================== -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro - MizuInk</title>
+<style>
+body {
+    font-family: Arial;
+    background-color: #F9F7F2;
+}
+.form-container {
+    max-width: 400px;
+    margin: 80px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid #E5D3B3;
+}
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+}
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #B78D8D;
+    color: white;
+    border: none;
+}
+</style>
+</head>
+<body>
+<div class="form-container">
+    <h2>Registro</h2>
+    <input type="text" placeholder="Usuario">
+    <input type="email" placeholder="Correo">
+    <input type="password" placeholder="Contraseña">
+    <button>Registrarse</button>
+</div>
 </body>
 </html>
