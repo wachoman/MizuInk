@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MizuInk</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #F9F7F2;
+        color: #2D2D2D;
+    }
+
+    header {
+        background-color: #8E9AAF;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    header h1 {
+        margin: 0;
+    }
+
+    nav a {
+        margin: 0 10px;
+        text-decoration: none;
+        color: #2D2D2D;
+        font-weight: bold;
+    }
+
+    .search-bar {
+        text-align: center;
+        margin: 20px;
+    }
+
+    .search-bar input {
+        width: 60%;
+        padding: 10px;
+        border: 2px solid #E5D3B3;
+        border-radius: 10px;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .card {
+        background: white;
+        border: 2px solid #E5D3B3;
+        border-radius: 15px;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .card img {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    .btn {
+        background-color: #B78D8D;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    .form-container {
+        max-width: 400px;
+        margin: 30px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 15px;
+        border: 2px solid #E5D3B3;
+    }
+
+    footer {
+        text-align: center;
+        padding: 10px;
+        background-color: #8E9AAF;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>MizuInk</h1>
+    <nav>
+        <a href="#">Inicio</a>
+        <a href="#registro">Registro</a>
+        <a href="#login">Login</a>
+    </nav>
+</header>
+
+<div class="search-bar">
+    <input type="text" placeholder="Buscar manga...">
+</div>
+
+<section class="container">
+    <div class="card">
+        <img src="https://via.placeholder.com/200x300" alt="manga">
+        <h3>Manga 1</h3>
+        <button class="btn">Seguir</button>
+    </div>
+    <div class="card">
+        <img src="https://via.placeholder.com/200x300" alt="manga">
+        <h3>Manga 2</h3>
+        <button class="btn">Seguir</button>
+    </div>
+</section>
+
+<section id="registro" class="form-container">
+    <h2>Registro</h2>
+    <input type="text" placeholder="Usuario"><br><br>
+    <input type="email" placeholder="Correo"><br><br>
+    <input type="password" placeholder="Contraseña"><br><br>
+    <button class="btn">Registrarse</button>
+</section>
+
+<section id="login" class="form-container">
+    <h2>Login</h2>
+    <input type="text" placeholder="Usuario"><br><br>
+    <input type="password" placeholder="Contraseña"><br><br>
+    <button class="btn">Ingresar</button>
+</section>
+
+<!-- ESPACIO PARA CONEXIÓN A BASE DE DATOS -->
+<!-- Aquí puedes conectar con backend (Node.js, PHP, Firebase, etc.) -->
+<script>
+// Aquí irá la lógica para conectar usuarios, mangas y favoritos
+</script>
+
+<footer>
+    <p>MizuInk © 2026</p>
+</footer>
+
+</body>
+</html>
