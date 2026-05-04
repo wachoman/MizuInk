@@ -7,68 +7,95 @@
 
 <style>
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg,#F9F7F2,#B78D8D);
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background:linear-gradient(135deg,#8E9AAF,#B78D8D);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
 }
-.form {
-    max-width:400px;
-    margin:100px auto;
-    background:white;
-    padding:30px;
+
+/* TARJETA */
+.card {
+    background:#F9F7F2;
+    padding:40px;
     border-radius:20px;
-    box-shadow:0 5px 20px rgba(0,0,0,0.2);
+    width:350px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    text-align:center;
 }
+
+/* TITULO */
+h2 {
+    margin-bottom:20px;
+}
+
+/* INPUTS */
+.input-group {
+    position:relative;
+    margin:20px 0;
+}
+
 input {
     width:100%;
-    padding:10px;
-    margin:10px 0;
+    padding:12px;
     border-radius:10px;
-    border:1px solid #ccc;
+    border:1px solid #E5D3B3;
+    outline:none;
 }
+
+/* BOTON */
 button {
     width:100%;
-    padding:10px;
-    background:#8E9AAF;
-    color:white;
+    padding:12px;
+    background:#B78D8D;
     border:none;
+    color:white;
     border-radius:10px;
+    font-size:16px;
     cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover {
+    background:#a37474;
+}
+
+/* LINK */
+.link {
+    margin-top:15px;
+    font-size:14px;
+}
+
+.link a {
+    color:#8E9AAF;
+    text-decoration:none;
 }
 </style>
-</head>
 
+</head>
 <body>
 
-<div class="form">
-<h2>Login</h2>
-<input id="email" placeholder="Correo">
-<input id="password" type="password" placeholder="Contraseña">
-<button>Entrar</button>
+<div class="card">
+    <h2>Bienvenido a MizuInk</h2>
+
+    <div class="input-group">
+        <input id="email" placeholder="Correo electrónico">
+    </div>
+
+    <div class="input-group">
+        <input id="password" type="password" placeholder="Contraseña">
+    </div>
+
+    <button>Iniciar sesión</button>
+
+    <div class="link">
+        ¿No tienes cuenta? <a href="registro.html">Regístrate</a>
+    </div>
 </div>
 
-<!-- FIREBASE DESACTIVADO -->
-<!--
-<script type="module">
-
-import { firebaseConfig } from "./firebase-config.js";
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-// FUNCIÓN LOGIN
-window.login = async () => {
-    try {
-        await signInWithEmailAndPassword(auth, email.value, password.value);
-        location.href="index.html";
-    } catch(e){
-        alert(e.message);
-    }
-};
-
-</script>
--->
+<!-- FIREBASE AQUÍ (CUANDO LO ACTIVES) -->
 
 </body>
 </html>
