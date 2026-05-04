@@ -1,25 +1,80 @@
-<input id="email">
-<input id="password" type="password">
-<button onclick="registro()">Registrarse</button>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro - MizuInk</title>
 
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg,#F9F7F2,#8E9AAF);
+}
+.form {
+    max-width:400px;
+    margin:100px auto;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.2);
+}
+input {
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    border-radius:10px;
+    border:1px solid #ccc;
+}
+button {
+    width:100%;
+    padding:10px;
+    background:#B78D8D;
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="form">
+<h2>Registro</h2>
+<input id="email" placeholder="Correo">
+<input id="password" type="password" placeholder="Contraseña">
+<button>Registrarse</button>
+</div>
+
+<!-- FIREBASE DESACTIVADO -->
+<!--
 <script type="module">
+
+import { firebaseConfig } from "./firebase-config.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-const app = initializeApp({ /* config */ });
+const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+// FUNCIÓN REGISTRO
 window.registro = async () => {
-    const cred = await createUserWithEmailAndPassword(auth, email.value, password.value);
+    const cred = await createUserWithEmailAndPassword(auth,email.value,password.value);
 
-    await setDoc(doc(db, "usuarios", cred.user.uid), {
-        uid: cred.user.uid,
-        email: cred.user.email,
-        role: "user"
+    await setDoc(doc(db,"usuarios",cred.user.uid),{
+        uid:cred.user.uid,
+        email:cred.user.email,
+        role:"user"
     });
 
     alert("Registrado");
-}
+    location.href="login.html";
+};
+
 </script>
+-->
+
+</body>
+</html>
