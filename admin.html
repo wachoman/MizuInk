@@ -1,58 +1,58 @@
 <h2>Panel Admin</h2>
 
-<input id="nombre" placeholder="Nombre">
+<input id="nombre" placeholder="Nombre manga">
 <input id="imagen" placeholder="URL imagen">
 <button onclick="agregar()">Agregar</button>
 
 <div id="lista"></div>
 
 <script type="module">
-import { firebaseConfig } from "./firebase-config.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-const app = initializeApp(firebaseConfig);
+const app = initializeApp({ /* config */ });
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-// PROTECCIÓN
-onAuthStateChanged(auth, async (user)=>{
-    if(!user) return location.href="login.html";
+// PROTECCIÓN ADMIN
+onAuthStateChanged(auth, async (user) => {
+    if(!user) return location.href = "login.html";
 
-    const data = await getDocs(collection(db,"usuarios"));
-    let admin=false;
+    const users = await getDocs(collection(db, "usuarios"));
+    let isAdmin = false;
 
-    data.forEach(d=>{
-        const u = d.data();
-        if(u.uid===user.uid && u.role==="admin"){
-            admin=true;
+    users.forEach(doc=>{
+        const u = doc.data();
+        if(u.uid === user.uid && u.role === "admin"){
+            isAdmin = true;
         }
     });
 
-    if(!admin){
+    if(!isAdmin){
         alert("No autorizado");
-        location.href="index.html";
+        location.href = "index.html";
     }
 });
 
-window.agregar = async ()=>{
-    await addDoc(collection(db,"mangas"),{
-        nombre:nombre.value,
-        imagen:imagen.value
+// CRUD
+window.agregar = async () => {
+    await addDoc(collection(db,"mangas"), {
+        nombre: nombre.value,
+        imagen: imagen.value
     });
     cargar();
 };
 
 async function cargar(){
-    const cont=document.getElementById("lista");
-    cont.innerHTML="";
+    const cont = document.getElementById("lista");
+    cont.innerHTML = "";
 
-    const data=await getDocs(collection(db,"mangas"));
+    const data = await getDocs(collection(db,"mangas"));
 
     data.forEach(d=>{
-        const m=d.data();
-        cont.innerHTML+=`
+        const m = d.data();
+        cont.innerHTML += `
         <div>
             ${m.nombre}
             <button onclick="eliminar('${d.id}')">X</button>
