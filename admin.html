@@ -1,58 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin - MizuInk</title>
+
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background:#F9F7F2;
+}
+.panel {
+    max-width:600px;
+    margin:50px auto;
+    background:white;
+    padding:20px;
+    border-radius:15px;
+}
+input {
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+}
+button {
+    padding:10px;
+    background:#B78D8D;
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="panel">
 <h2>Panel Admin</h2>
 
-<input id="nombre" placeholder="Nombre manga">
-<input id="imagen" placeholder="URL imagen">
-<button onclick="agregar()">Agregar</button>
+<input placeholder="Nombre del manga">
+<input placeholder="URL de imagen">
+<button>Agregar</button>
 
-<div id="lista"></div>
+<div id="lista">
+    <!-- Aquí se mostrarán mangas -->
+</div>
 
+</div>
+
+<!-- FIREBASE DESACTIVADO -->
+<!--
 <script type="module">
+
+import { firebaseConfig } from "./firebase-config.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-const app = initializeApp({ /* config */ });
+const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
 // PROTECCIÓN ADMIN
-onAuthStateChanged(auth, async (user) => {
-    if(!user) return location.href = "login.html";
+onAuthStateChanged(auth, async (user)=>{
+    if(!user) return location.href="login.html";
 
-    const users = await getDocs(collection(db, "usuarios"));
-    let isAdmin = false;
+    const data = await getDocs(collection(db,"usuarios"));
+    let admin=false;
 
-    users.forEach(doc=>{
-        const u = doc.data();
-        if(u.uid === user.uid && u.role === "admin"){
-            isAdmin = true;
+    data.forEach(d=>{
+        const u = d.data();
+        if(u.uid===user.uid && u.role==="admin"){
+            admin=true;
         }
     });
 
-    if(!isAdmin){
+    if(!admin){
         alert("No autorizado");
-        location.href = "index.html";
+        location.href="index.html";
     }
 });
 
 // CRUD
-window.agregar = async () => {
-    await addDoc(collection(db,"mangas"), {
-        nombre: nombre.value,
-        imagen: imagen.value
+window.agregar = async ()=>{
+    await addDoc(collection(db,"mangas"),{
+        nombre:nombre.value,
+        imagen:imagen.value
     });
     cargar();
 };
 
 async function cargar(){
-    const cont = document.getElementById("lista");
-    cont.innerHTML = "";
+    const cont=document.getElementById("lista");
+    cont.innerHTML="";
 
-    const data = await getDocs(collection(db,"mangas"));
+    const data=await getDocs(collection(db,"mangas"));
 
     data.forEach(d=>{
-        const m = d.data();
-        cont.innerHTML += `
+        const m=d.data();
+        cont.innerHTML+=`
         <div>
             ${m.nombre}
             <button onclick="eliminar('${d.id}')">X</button>
@@ -66,4 +112,9 @@ window.eliminar = async (id)=>{
 };
 
 cargar();
+
 </script>
+-->
+
+</body>
+</html>
