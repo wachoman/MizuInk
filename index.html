@@ -1,65 +1,62 @@
-<!-- ===================== INDEX.HTML ===================== -->
 <!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MizuInk</title>
-<style>
-    body {
-        margin: 0;
-        font-family: 'Segoe UI', sans-serif;
-        background: linear-gradient(135deg, #F9F7F2, #E5D3B3);
-        color: #2D2D2D;
     }
 
-    header {
-        background: #8E9AAF;
-        padding: 15px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    .card h3 {
+        padding: 10px;
     }
 
-    header h1 {
-        margin: 0;
-        color: white;
-    }
-
-    nav a {
-        margin: 5px 10px;
-        text-decoration: none;
-        color: white;
-        font-weight: bold;
-    }
-
-    nav a:hover {
-        color: #B78D8D;
-    }
-
-    .search-bar {
-        text-align: center;
-        margin: 20px;
-    }
-
-    .search-bar input {
-        width: 80%;
-        max-width: 500px;
-        padding: 12px;
-        border-radius: 25px;
+    .btn {
+        margin: 10px;
+        padding: 10px;
+        background: #B78D8D;
         border: none;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        color: white;
+        border-radius: 10px;
+        cursor: pointer;
     }
 
-    .container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 20px;
-        padding: 20px;
+    footer {
+        text-align: center;
+        padding: 15px;
+        background: #8E9AAF;
+        color: white;
     }
+</style>
+</head>
+<body>
+<header>
+    <h1>MizuInk</h1>
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="login.html">Login</a>
+        <a href="registro.html">Registro</a>
+        <a href="admin.html">Admin</a>
+    </nav>
+</header>
 
-    .card {
+<div class="search-bar">
+    <input type="text" placeholder="Buscar mangas BL / Yaoi...">
+</div>
+
+<section class="container">
+
+    <!-- ===================== AQUÍ AGREGAS MANGAS ===================== -->
+    <!-- COPIA ESTE BLOQUE Y CAMBIA IMAGEN Y NOMBRE -->
+    <div class="card">
+        <img src="https://via.placeholder.com/200x300">
+        <h3>Nombre del Manga</h3>
+        <button class="btn">Seguir</button>
+    </div>
+
+</section>
+
+<!-- AQUÍ PUEDES CONECTAR BASE DE DATOS -->
+<script>
+// Conexión futura con backend (Firebase, Node.js, etc)
+</script>
+
+<footer>
+    <p>MizuInk © 2026</p>
+</footer>
+</body>
 </html>
-
