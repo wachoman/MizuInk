@@ -7,27 +7,27 @@
 
 <style>
 body {
-    margin:0;
-    font-family:sans-serif;
-    background:linear-gradient(135deg,#F9F7F2,#E5D3B3);
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #F9F7F2, #E5D3B3);
 }
 header {
-    background:#8E9AAF;
-    padding:15px;
-    display:flex;
-    justify-content:space-between;
-    color:white;
+    background: #8E9AAF;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    color: white;
 }
 .container {
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:20px;
-    padding:20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap: 20px;
+    padding: 20px;
 }
 .card {
-    background:white;
-    border-radius:15px;
-    overflow:hidden;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
 }
 .card img { width:100%; }
 .btn {
@@ -36,6 +36,7 @@ header {
     color:white;
     padding:10px;
     margin:10px;
+    border-radius:10px;
 }
 </style>
 </head>
@@ -53,20 +54,21 @@ header {
 <div class="container" id="mangas"></div>
 
 <script type="module">
-import { firebaseConfig } from "./firebase-config.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+const firebaseConfig = { /* TU CONFIG */ };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
+// Cargar mangas
 async function cargarMangas() {
     const cont = document.getElementById("mangas");
-    cont.innerHTML = "";
-
     const data = await getDocs(collection(db, "mangas"));
+
     data.forEach(doc => {
         const m = doc.data();
         cont.innerHTML += `
@@ -80,14 +82,15 @@ async function cargarMangas() {
 
 cargarMangas();
 
-// detectar admin oculto
+// Detectar admin
 onAuthStateChanged(auth, async (user) => {
     if(user){
-        const data = await getDocs(collection(db,"usuarios"));
-        data.forEach(d=>{
-            const u = d.data();
+        const res = await getDocs(collection(db, "usuarios"));
+        res.forEach(doc=>{
+            const u = doc.data();
             if(u.uid === user.uid && u.role === "admin"){
-                location.href = "admin.html";
+                // Redirección secreta
+                window.location.href = "admin.html";
             }
         });
     }
