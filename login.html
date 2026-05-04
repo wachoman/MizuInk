@@ -3,19 +3,19 @@
 <button onclick="login()">Entrar</button>
 
 <script type="module">
-import { firebaseConfig } from "./firebase-config.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-const app = initializeApp(firebaseConfig);
+const app = initializeApp({ /* config */ });
 const auth = getAuth(app);
 
 window.login = async () => {
+    const email = email.value;
+    const pass = password.value;
+
     try {
-        await signInWithEmailAndPassword(auth, email.value, password.value);
-        location.href="index.html";
-    } catch(e){
-        alert(e.message);
-    }
+        await signInWithEmailAndPassword(auth, email, pass);
+        location.href = "index.html";
+    } catch(e){ alert(e.message); }
 }
 </script>
