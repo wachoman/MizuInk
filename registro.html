@@ -7,74 +7,95 @@
 
 <style>
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg,#F9F7F2,#8E9AAF);
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background:linear-gradient(135deg,#B78D8D,#8E9AAF);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
 }
-.form {
-    max-width:400px;
-    margin:100px auto;
-    background:white;
-    padding:30px;
+
+/* TARJETA */
+.card {
+    background:#F9F7F2;
+    padding:40px;
     border-radius:20px;
-    box-shadow:0 5px 20px rgba(0,0,0,0.2);
+    width:350px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    text-align:center;
 }
+
+/* TITULO */
+h2 {
+    margin-bottom:20px;
+}
+
+/* INPUTS */
+.input-group {
+    margin:20px 0;
+}
+
 input {
     width:100%;
-    padding:10px;
-    margin:10px 0;
+    padding:12px;
     border-radius:10px;
-    border:1px solid #ccc;
+    border:1px solid #E5D3B3;
+    outline:none;
 }
+
+/* BOTON */
 button {
     width:100%;
-    padding:10px;
-    background:#B78D8D;
-    color:white;
+    padding:12px;
+    background:#8E9AAF;
     border:none;
+    color:white;
     border-radius:10px;
+    font-size:16px;
     cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover {
+    background:#6f7c92;
+}
+
+/* LINK */
+.link {
+    margin-top:15px;
+    font-size:14px;
+}
+
+.link a {
+    color:#B78D8D;
+    text-decoration:none;
 }
 </style>
-</head>
 
+</head>
 <body>
 
-<div class="form">
-<h2>Registro</h2>
-<input id="email" placeholder="Correo">
-<input id="password" type="password" placeholder="Contraseña">
-<button>Registrarse</button>
+<div class="card">
+    <h2>Crear cuenta</h2>
+
+    <div class="input-group">
+        <input placeholder="Correo electrónico">
+    </div>
+
+    <div class="input-group">
+        <input type="password" placeholder="Contraseña">
+    </div>
+
+    <button>Registrarse</button>
+
+    <div class="link">
+        ¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a>
+    </div>
 </div>
 
-<!-- FIREBASE DESACTIVADO -->
-<!--
-<script type="module">
-
-import { firebaseConfig } from "./firebase-config.js";
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-// FUNCIÓN REGISTRO
-window.registro = async () => {
-    const cred = await createUserWithEmailAndPassword(auth,email.value,password.value);
-
-    await setDoc(doc(db,"usuarios",cred.user.uid),{
-        uid:cred.user.uid,
-        email:cred.user.email,
-        role:"user"
-    });
-
-    alert("Registrado");
-    location.href="login.html";
-};
-
-</script>
--->
+<!-- FIREBASE AQUÍ -->
 
 </body>
+</html>
 </html>
