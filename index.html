@@ -7,164 +7,92 @@
 
 <style>
 body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #F9F7F2, #E5D3B3);
-    color: #2D2D2D;
+    margin:0;
+    font-family:sans-serif;
+    background:linear-gradient(135deg,#F9F7F2,#E5D3B3);
 }
-
-/* HEADER */
 header {
-    background: #8E9AAF;
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    background:#8E9AAF;
+    padding:15px;
+    display:flex;
+    justify-content:space-between;
+    color:white;
 }
-
-header h1 {
-    margin: 0;
-    color: white;
-}
-
-nav a {
-    margin: 5px 10px;
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-nav a:hover {
-    color: #B78D8D;
-}
-
-/* SEARCH */
-.search-bar {
-    text-align: center;
-    margin: 20px;
-}
-
-.search-bar input {
-    width: 80%;
-    max-width: 500px;
-    padding: 12px;
-    border-radius: 25px;
-    border: none;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-/* GRID */
 .container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    padding: 20px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+    padding:20px;
 }
-
-/* CARD */
 .card {
-    background: white;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    transition: 0.3s;
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
 }
-
-.card:hover {
-    transform: translateY(-10px);
-}
-
-.card img {
-    width: 100%;
-}
-
-.card h3 {
-    padding: 10px;
-}
-
+.card img { width:100%; }
 .btn {
-    margin: 10px;
-    padding: 10px;
-    background: #B78D8D;
-    border: none;
-    color: white;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-/* FOOTER */
-footer {
-    text-align: center;
-    padding: 15px;
-    background: #8E9AAF;
-    color: white;
-}
-
-/* RESPONSIVE */
-@media (max-width: 600px) {
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .search-bar input {
-        width: 95%;
-    }
+    background:#B78D8D;
+    border:none;
+    color:white;
+    padding:10px;
+    margin:10px;
 }
 </style>
-
 </head>
+
 <body>
 
 <header>
     <h1>MizuInk</h1>
-    <nav>
-        <a href="index.html">Inicio</a>
+    <div>
         <a href="login.html">Login</a>
         <a href="registro.html">Registro</a>
-        <a href="admin.html">Admin</a>
-    </nav>
+    </div>
 </header>
 
-<!-- BUSCADOR -->
-<div class="search-bar">
-    <input type="text" placeholder="Buscar mangas">
-</div>
+<div class="container" id="mangas"></div>
 
-<!-- CONTENIDO -->
-<section class="container">
+<script type="module">
+import { firebaseConfig } from "./firebase-config.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-    <!-- ===================== AQUÍ AGREGAS MANGAS ===================== -->
-    <!-- COPIA ESTE BLOQUE PARA MÁS MANGAS -->
-    
-    <div class="card">
-        <img src="https://via.placeholder.com/200x300">
-        <h3>Nombre del Manga</h3>
-        <button class="btn">Seguir</button>
-    </div>
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
 
-    <div class="card">
-        <img src="https://via.placeholder.com/200x300">
-        <h3>Otro Manga</h3>
-        <button class="btn">Seguir</button>
-    </div>
+async function cargarMangas() {
+    const cont = document.getElementById("mangas");
+    cont.innerHTML = "";
 
-</section>
+    const data = await getDocs(collection(db, "mangas"));
+    data.forEach(doc => {
+        const m = doc.data();
+        cont.innerHTML += `
+        <div class="card">
+            <img src="${m.imagen}">
+            <h3>${m.nombre}</h3>
+            <button class="btn">Seguir</button>
+        </div>`;
+    });
+}
 
-<!-- BASE DE DATOS -->
-<script>
-// Aquí conectarás:
-// - Firebase
-// - Node.js
-// - API de mangas
+cargarMangas();
+
+// detectar admin oculto
+onAuthStateChanged(auth, async (user) => {
+    if(user){
+        const data = await getDocs(collection(db,"usuarios"));
+        data.forEach(d=>{
+            const u = d.data();
+            if(u.uid === user.uid && u.role === "admin"){
+                location.href = "admin.html";
+            }
+        });
+    }
+});
 </script>
-
-<footer>
-    <p>MizuInk © 2026</p>
-</footer>
 
 </body>
 </html>
