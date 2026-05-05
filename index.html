@@ -21,100 +21,140 @@ header {
     justify-content:space-between;
     align-items:center;
     color:white;
+    flex-wrap:wrap;
+}
+
+header h1 {
+    margin:5px 0;
 }
 
 header a {
     color:white;
-    margin-left:15px;
+    margin-left:10px;
     text-decoration:none;
 }
 
 /* BUSCADOR */
+.search-header {
+    width:100%;
+    text-align:center;
+    margin-top:10px;
+}
+
 .search-header input {
-    width:320px;
-    padding:10px 15px;
+    width:60%;
+    max-width:350px;
+    padding:10px;
     border-radius:25px;
     border:none;
-    font-size:15px;
 }
 
 /* HERO */
 .hero {
-    position: relative;
-    height: 320px;
-    overflow: hidden;
+    height:260px;
+    position:relative;
+    overflow:hidden;
 }
 
 .slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
+    position:absolute;
+    width:100%;
+    height:100%;
+    background-size:cover;
+    background-position:center;
+    opacity:0;
+    transition:opacity 1s;
 }
 
 .slide.active {
-    opacity: 1;
+    opacity:1;
 }
 
 .overlay {
-    position: relative;
-    z-index: 2;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-    background: rgba(0,0,0,0.4);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:100%;
+    background:rgba(0,0,0,0.4);
+    color:white;
+    text-align:center;
+    padding:10px;
+}
+
+.overlay h1 {
+    font-size:22px;
 }
 
 /* GRID */
 .grid {
     display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(160px,1fr));
-    gap:20px;
+    grid-template-columns:repeat(auto-fit, minmax(140px,1fr));
+    gap:15px;
 }
 
 .card {
     background:white;
     border-radius:15px;
     overflow:hidden;
-    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    box-shadow:0 5px 10px rgba(0,0,0,0.1);
 }
 
 .card img {
     width:100%;
-    height:320px;
+    height:250px;
     object-fit:cover;
+}
+
+.card h3 {
+    font-size:14px;
+    padding:8px;
+}
+
+.btn {
+    margin:8px;
+    padding:6px;
+    background:#B78D8D;
+    color:white;
+    border:none;
+    border-radius:8px;
+    width:calc(100% - 16px);
 }
 
 /* FOOTER */
 footer {
     display:flex;
     justify-content:space-between;
-    padding:25px;
+    flex-wrap:wrap;
+    padding:20px;
     background:#8E9AAF;
     color:white;
 }
 
-/* CONTACTO */
 .contact-banner {
     background:#6C7A89;
-    padding:15px;
-    border-radius:12px;
+    padding:10px;
+    border-radius:10px;
+    margin-top:10px;
+}
+
+.contact-banner ul {
+    list-style:none;
+    padding:0;
+    margin:0;
+}
+
+.contact-banner li {
+    margin:5px 0;
 }
 
 /* MODAL */
 .modal {
-    position: fixed;
+    position:fixed;
     top:0;
     left:0;
     width:100%;
     height:100%;
-    background: rgba(142,154,175,0.9);
+    background:rgba(142,154,175,0.9);
     display:flex;
     justify-content:center;
     align-items:center;
@@ -127,37 +167,42 @@ footer {
 
 .modal-content {
     background:#F9F7F2;
-    padding:30px;
-    border-radius:20px;
-    max-width:520px;
+    padding:20px;
+    border-radius:15px;
+    max-width:90%;
     text-align:center;
-    border:2px solid #8E9AAF;
 }
 
 .modal-buttons {
-    margin-top:20px;
     display:flex;
+    flex-direction:column;
     gap:10px;
+    margin-top:15px;
 }
 
-.btn-yes {
-    flex:1;
-    background:#8E9AAF;
-    color:white;
-    border:none;
+.btn-yes, .btn-no {
     padding:10px;
+    border:none;
     border-radius:10px;
-    cursor:pointer;
+    color:white;
 }
 
-.btn-no {
-    flex:1;
-    background:#B78D8D;
-    color:white;
-    border:none;
-    padding:10px;
-    border-radius:10px;
-    cursor:pointer;
+.btn-yes { background:#8E9AAF; }
+.btn-no { background:#B78D8D; }
+
+/* 📱 MEDIA QUERY */
+@media (min-width:768px) {
+    .search-header input {
+        width:320px;
+    }
+
+    .modal-buttons {
+        flex-direction:row;
+    }
+
+    .card img {
+        height:320px;
+    }
 }
 </style>
 </head>
@@ -167,19 +212,24 @@ footer {
 <!-- MODAL -->
 <div id="ageModal" class="modal hidden">
     <div class="modal-content">
-        <h2>⚠️ Bienvenidos a MizuInk</h2>
-        <p>Somos un espacio dedicado a la difusión y apreciación del género Boys' Love.</p>
-        <p><strong>ADVERTENCIA:</strong> Contenido +18.</p>
+        <h2>Bienvenidos a MizuInk</h2>
+        <p>Contenido BL +18. Confirma que eres mayor de edad.</p>
 
         <div class="modal-buttons">
-            <button onclick="aceptarEdad()" class="btn-yes">Sí, soy mayor de edad</button>
-            <button onclick="salirPagina()" class="btn-no">No, salir</button>
+            <button onclick="aceptarEdad()" class="btn-yes">Sí, soy mayor</button>
+            <button onclick="salirPagina()" class="btn-no">Salir</button>
         </div>
     </div>
 </div>
 
 <header>
     <h1>MizuInk</h1>
+
+    <div>
+        <a href="#">Login</a>
+        <a href="#">Registro</a>
+    </div>
+
     <div class="search-header">
         <input type="text" placeholder="Buscar manga...">
     </div>
@@ -187,15 +237,33 @@ footer {
 
 <section class="hero">
     <div class="slide active" style="background-image:url('Jinx.jpg')"></div>
+    <div class="overlay">
+        <h1>Descubre mangas BL</h1>
+    </div>
+</section>
+
+<section class="section">
+<h2>🔥 Populares</h2>
+<div class="grid">
+<div class="card"><img src="Jinx.jpg"><h3>Jinx</h3><button class="btn">Leer</button></div>
+<div class="card"><img src="Painter.jpg"><h3>Painter</h3><button class="btn">Leer</button></div>
+</div>
 </section>
 
 <footer>
     <p>MizuInk © 2026</p>
-    <div class="contact-banner">Contacto</div>
+
+    <div class="contact-banner">
+        <ul>
+            <li>📧 Correo</li>
+            <li>📱 Telegram</li>
+            <li>💬 Discord</li>
+        </ul>
+    </div>
 </footer>
 
 <script>
-// CONTROL MODAL CORREGIDO
+// MODAL
 document.addEventListener("DOMContentLoaded", () => {
     const modal = document.getElementById("ageModal");
 
