@@ -162,21 +162,17 @@ footer {
     text-decoration:none;
     font-size:16px;
     font-weight:bold;
-    display:block;
 }
 
-.contact-banner a:hover {
-    color:#FFDADA;
-}
-
-/* MODAL */
+/* MODAL CON PALETA */
 .modal {
     position: fixed;
     top:0;
     left:0;
     width:100%;
     height:100%;
-    background: rgba(0,0,0,0.9);
+    background: rgba(142,154,175,0.85);
+    backdrop-filter: blur(5px);
     display:flex;
     justify-content:center;
     align-items:center;
@@ -184,34 +180,38 @@ footer {
 }
 
 .modal-content {
-    background:white;
-    padding:25px;
-    border-radius:15px;
-    max-width:500px;
+    background:#F9F7F2;
+    padding:30px;
+    border-radius:20px;
+    max-width:520px;
     text-align:center;
+    border:2px solid #8E9AAF;
+    box-shadow:0 8px 25px rgba(0,0,0,0.2);
 }
 
 .modal-buttons {
     margin-top:20px;
     display:flex;
-    justify-content:space-around;
+    gap:10px;
 }
 
 .btn-yes {
-    background:#4CAF50;
+    flex:1;
+    background:#8E9AAF;
     color:white;
     border:none;
-    padding:10px 15px;
-    border-radius:8px;
+    padding:10px;
+    border-radius:10px;
     cursor:pointer;
 }
 
 .btn-no {
-    background:#E74C3C;
+    flex:1;
+    background:#B78D8D;
     color:white;
     border:none;
-    padding:10px 15px;
-    border-radius:8px;
+    padding:10px;
+    border-radius:10px;
     cursor:pointer;
 }
 </style>
@@ -222,14 +222,14 @@ footer {
 <!-- MODAL -->
 <div id="ageModal" class="modal">
     <div class="modal-content">
-        <h2>⚠️ Bienvenido a MizuInk</h2>
+        <h2>Bienvenidos a MizuInk</h2>
         <p>
         Somos un espacio dedicado a la difusión y apreciación del género Boys' Love.
-        Aquí encontrarás una selección curada de mangas, desde historias dulces hasta tramas intensas.
+        Aquí encontrarás una selección curada de mangas, desde historias dulces y escolares hasta tramas intensas y maduras.
         </p>
 
-        <p><strong>ADVERTENCIA:</strong> Este sitio contiene material gráfico que representa relaciones entre hombres.
-        Al acceder, confirmas que eres mayor de edad (18+) y que el contenido es legal en tu país.
+        <p><strong>ADVERTENCIA:</strong> Este sitio contiene material gráfico que representa relaciones románticas y sexuales entre hombres.
+        Al acceder, confirmas que eres mayor de edad (18+) según las leyes de tu país y que el contenido es legal en tu jurisdicción.
         </p>
 
         <div class="modal-buttons">
@@ -241,11 +241,9 @@ footer {
 
 <header>
     <h1>MizuInk</h1>
-
     <div class="search-header">
         <input type="text" placeholder="Buscar manga...">
     </div>
-    
     <div>
         <a href="login.html">Login</a>
         <a href="registro.html">Registro</a>
@@ -284,7 +282,6 @@ footer {
 
 <footer>
     <p>MizuInk © 2026</p>
-
     <div class="contact-banner">
         <ul>
             <li><a href="mailto:tucorreo@gmail.com">📧 Correo</a></li>
@@ -306,7 +303,7 @@ function cambiarSlide() {
 }
 setInterval(cambiarSlide, 3000);
 
-// MODAL EDAD
+// MODAL
 window.onload = function() {
     if(localStorage.getItem("edadAceptada")) {
         document.getElementById("ageModal").style.display = "none";
