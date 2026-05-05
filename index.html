@@ -24,7 +24,7 @@ header {
     color:white;
 }
 
-/* IZQUIERDA (LOGO + MENU) */
+/* IZQUIERDA */
 .left-group {
     display:flex;
     align-items:center;
@@ -182,7 +182,7 @@ footer {
     color:white;
 }
 
-/* CONTACTO */
+/* CONTACTO (RESTAURADO) */
 .contact-banner {
     margin-top:20px;
     background:#6C7A89;
@@ -250,16 +250,6 @@ footer {
     max-width:500px;
     text-align:justify;
     border:2px solid #8E9AAF;
-    box-shadow:0 10px 25px rgba(0,0,0,0.3);
-}
-
-.modal-content h2 {
-    text-align:center;
-    margin-bottom:15px;
-}
-
-.modal-content p {
-    line-height:1.6;
 }
 
 .modal-buttons {
@@ -267,23 +257,7 @@ footer {
     justify-content:center;
     gap:15px;
     margin-top:20px;
-    flex-wrap:wrap;
 }
-
-.btn-yes, .btn-no {
-    padding:10px 20px;
-    border:none;
-    border-radius:10px;
-    color:white;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-.btn-yes { background:#8E9AAF; }
-.btn-no { background:#B78D8D; }
-
-.btn-yes:hover { background:#6f7f99; }
-.btn-no:hover { background:#9f6f6f; }
 
 /* RESPONSIVE */
 @media (max-width:900px) {
@@ -309,19 +283,6 @@ footer {
 </head>
 
 <body>
-
-<!-- MODAL -->
-<div id="ageModal" class="modal hidden">
-    <div class="modal-content">
-        <h2>Bienvenidos a MizuInk</h2>
-        <p>ADVERTENCIA DE CONTENIDO (+18): Este sitio web contiene material gráfico explícito...</p>
-
-        <div class="modal-buttons">
-            <button onclick="aceptarEdad()" class="btn-yes">Sí, soy mayor</button>
-            <button onclick="salirPagina()" class="btn-no">Salir</button>
-        </div>
-    </div>
-</div>
 
 <header>
     <div class="left-group">
@@ -367,7 +328,7 @@ footer {
 </div>
 </section>
 
-<section class="section">
+    <section class="section">
 <h2>🆕 Nuevos</h2>
 <div class="grid">
 <div class="card"><img src="Jujutsu.jpg"><h3>Jujutsu Kaisen</h3><button class="btn">Leer</button></div>
@@ -385,21 +346,19 @@ footer {
             <a href="mailto:tucorreo@gmail.com">📧 ¡Contáctanos!</a>
             <span>Envíanos un correo para dudas o sugerencias</span>
         </li>
+
+        <li>
+            <a href="https://t.me/tuusuario">📱 Telegram</a>
+            <span>Entérate de las actualizaciones de tus mangas favoritos</span>
+        </li>
+
+        <li>
+            <a href="https://discord.gg/tulink">💬 Discord</a>
+            <span>Únete a nuestro servidor de Discord para escuchar tus peticiones</span>
+        </li>
     </ul>
 </div>
 </footer>
-
-<script>
-let slides = document.querySelectorAll(".slide");
-let index = 0;
-
-function cambiarSlide() {
-    slides[index].classList.remove("active");
-    index = (index + 1) % slides.length;
-    slides[index].classList.add("active");
-}
-setInterval(cambiarSlide, 3000);
-</script>
 
 </body>
 </html>
