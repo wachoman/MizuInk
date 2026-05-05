@@ -22,34 +22,36 @@ header {
     justify-content:space-between;
     gap:15px;
     color:white;
-    flex-wrap:wrap; /* 🔥 permite el menú abajo */
 }
 
-/* 🔥 MENU */
-.menu {
-    width:100%;
+/* IZQUIERDA (LOGO + MENU) */
+.left-group {
     display:flex;
-    justify-content:center;
-    gap:15px;
-    margin-top:5px;
+    align-items:center;
+    gap:20px;
+}
+
+/* MENU */
+.menu {
+    display:flex;
+    gap:10px;
 }
 
 .menu a {
     color:white;
     text-decoration:none;
-    padding:8px 15px;
-    border-radius:20px;
+    padding:6px 12px;
+    border-radius:15px;
     background:rgba(255,255,255,0.1);
     transition:0.3s;
-    font-size:14px;
+    font-size:13px;
 }
 
 .menu a:hover {
     background:rgba(255,255,255,0.3);
-    transform:translateY(-2px);
 }
 
-/* SEARCH */
+/* BUSCADOR */
 .search-header {
     flex:1;
     display:flex;
@@ -58,9 +60,9 @@ header {
 
 .search-header input {
     width:100%;
-    max-width:350px;
+    max-width:300px;
     padding:8px 12px;
-    border-radius:25px;
+    border-radius:20px;
     border:none;
 }
 
@@ -82,7 +84,6 @@ header a {
     overflow: hidden;
 }
 
-/* SLIDES */
 .slide {
     position: absolute;
     width: 100%;
@@ -97,28 +98,23 @@ header a {
     opacity: 1;
 }
 
-/* OVERLAY */
 .overlay {
     position: absolute;
-    top:0;
-    left:0;
     width:100%;
     height:100%;
     display:flex;
     align-items:center;
     justify-content:center;
-    text-align:center;
     color:white;
-    z-index: 10;
 }
 
 .overlay::before {
-    content: "";
-    position: absolute;
+    content:"";
+    position:absolute;
     width:100%;
     height:100%;
-    background: rgba(0,0,0,0.4);
-    z-index: -1;
+    background:rgba(0,0,0,0.4);
+    z-index:-1;
 }
 
 .overlay h1 {
@@ -130,14 +126,12 @@ header a {
     padding:20px;
 }
 
-/* GRID */
 .grid {
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
     gap:15px;
 }
 
-/* CARD */
 .card {
     background:white;
     border-radius:15px;
@@ -161,7 +155,6 @@ header a {
     font-size:14px;
 }
 
-/* BOTON */
 .btn {
     margin:10px auto;
     display:block;
@@ -293,33 +286,23 @@ footer {
 .btn-no:hover { background:#9f6f6f; }
 
 /* RESPONSIVE */
-@media (max-width:768px) {
+@media (max-width:900px) {
     header {
+        flex-wrap:wrap;
+    }
+
+    .left-group {
+        width:100%;
         justify-content:center;
     }
 
     .search-header {
-        order:3;
         width:100%;
-        margin-top:10px;
     }
 
     .nav-links {
-        order:2;
-    }
-
-    .menu {
-        flex-wrap:wrap;
-    }
-
-    .card img {
-        height:220px;
-    }
-}
-
-@media (min-width:768px) {
-    .card img {
-        height:320px;
+        width:100%;
+        justify-content:center;
     }
 }
 </style>
@@ -331,7 +314,7 @@ footer {
 <div id="ageModal" class="modal hidden">
     <div class="modal-content">
         <h2>Bienvenidos a MizuInk</h2>
-        <p>ADVERTENCIA DE CONTENIDO (+18): Este sitio web contiene material gráfico explícito de temática BL / Yaoi destinado exclusivamente a un público adulto...</p>
+        <p>ADVERTENCIA DE CONTENIDO (+18): Este sitio web contiene material gráfico explícito...</p>
 
         <div class="modal-buttons">
             <button onclick="aceptarEdad()" class="btn-yes">Sí, soy mayor</button>
@@ -341,25 +324,26 @@ footer {
 </div>
 
 <header>
-    <h1>MizuInk</h1>
+    <div class="left-group">
+        <h1>MizuInk</h1>
+
+        <nav class="menu">
+            <a href="#">Inicio</a>
+            <a href="#">Mangas</a>
+            <a href="#">Manhwa</a>
+            <a href="#">One Shot</a>
+            <a href="#">Manhua</a>
+        </nav>
+    </div>
 
     <div class="search-header">
         <input type="text" placeholder="Buscar manga...">
     </div>
-    
+
     <div class="nav-links">
         <a href="login.html">Login</a>
         <a href="registro.html">Registro</a>
     </div>
-
-    <!-- 🔥 MENÚ -->
-    <nav class="menu">
-        <a href="#">Inicio</a>
-        <a href="#">Mangas</a>
-        <a href="#">Manhwa</a>
-        <a href="#">One Shot</a>
-        <a href="#">Manhua</a>
-    </nav>
 </header>
 
 <section class="hero">
@@ -401,16 +385,6 @@ footer {
             <a href="mailto:tucorreo@gmail.com">📧 ¡Contáctanos!</a>
             <span>Envíanos un correo para dudas o sugerencias</span>
         </li>
-
-        <li>
-            <a href="https://t.me/tuusuario">📱 Telegram</a>
-            <span>Entérate de las actualizaciones de tus mangas favoritos</span>
-        </li>
-
-        <li>
-            <a href="https://discord.gg/tulink">💬 Discord</a>
-            <span>Únete a nuestro servidor de Discord para escuchar tus peticiones</span>
-        </li>
     </ul>
 </div>
 </footer>
@@ -425,27 +399,6 @@ function cambiarSlide() {
     slides[index].classList.add("active");
 }
 setInterval(cambiarSlide, 3000);
-
-document.addEventListener("DOMContentLoaded", () => {
-    const modal = document.getElementById("ageModal");
-
-    if(localStorage.getItem("edadAceptada") === "true") {
-        modal.classList.add("hidden");
-    } else {
-        modal.classList.remove("hidden");
-        document.body.style.overflow = "hidden";
-    }
-});
-
-function aceptarEdad() {
-    localStorage.setItem("edadAceptada", "true");
-    document.getElementById("ageModal").classList.add("hidden");
-    document.body.style.overflow = "auto";
-}
-
-function salirPagina() {
-    window.location.href = "https://www.google.com";
-}
 </script>
 
 </body>
