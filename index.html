@@ -18,35 +18,37 @@ header {
     background:#8E9AAF;
     padding:10px 20px;
     display:flex;
-    justify-content:space-between;
     align-items:center;
+    justify-content:space-between;
+    gap:15px;
     color:white;
-    flex-wrap:wrap;
 }
 
-header h1 {
-    margin:5px 0;
+/* BUSCADOR EN LINEA */
+.search-header {
+    flex:1;
+    display:flex;
+    justify-content:center;
+}
+
+.search-header input {
+    width:100%;
+    max-width:350px;
+    padding:8px 12px;
+    border-radius:25px;
+    border:none;
+    font-size:14px;
+}
+
+/* LINKS */
+.nav-links {
+    display:flex;
+    gap:10px;
 }
 
 header a {
     color:white;
-    margin-left:15px;
     text-decoration:none;
-}
-
-/* BUSCADOR */
-.search-header {
-    width:100%;
-    text-align:center;
-    margin-top:10px;
-}
-
-.search-header input {
-    width:60%;
-    max-width:320px;
-    padding:10px;
-    border-radius:25px;
-    border:none;
 }
 
 /* HERO */
@@ -81,10 +83,6 @@ header a {
     color:white;
     background: rgba(0,0,0,0.4);
     padding:10px;
-}
-
-.overlay h1 {
-    font-size:26px;
 }
 
 /* SECCIONES */
@@ -208,27 +206,36 @@ footer {
 .btn-yes { background:#8E9AAF; }
 .btn-no { background:#B78D8D; }
 
-/* 💻 TABLET / PC */
-@media (min-width:768px) {
+/* RESPONSIVE */
+@media (max-width:768px) {
 
-    .search-header input {
-        width:320px;
+    header {
+        flex-wrap:wrap;
+        justify-content:center;
     }
 
-    .grid {
-        grid-template-columns:repeat(auto-fit, minmax(160px,1fr));
+    .search-header {
+        order:3;
+        width:100%;
+        margin-top:10px;
+    }
+
+    .nav-links {
+        order:2;
     }
 
     .card img {
-        height:320px;
+        height:220px;
     }
+}
 
+@media (min-width:768px) {
     .modal-buttons {
         flex-direction:row;
     }
 
-    footer {
-        flex-wrap:nowrap;
+    .card img {
+        height:320px;
     }
 }
 </style>
@@ -241,7 +248,8 @@ footer {
     <div class="modal-content">
         <h2>⚠️ Bienvenidos a MizuInk</h2>
         <p>
-        Somos un espacio dedicado al género Boys' Love.
+        Somos un espacio dedicado a la difusión y apreciación del género Boys' Love.
+        Aquí encontrarás una selección curada de mangas.
         </p>
         <p><strong>ADVERTENCIA:</strong> Contenido +18.</p>
 
@@ -255,13 +263,13 @@ footer {
 <header>
     <h1>MizuInk</h1>
 
-    <div>
-        <a href="login.html">Login</a>
-        <a href="registro.html">Registro</a>
-    </div>
-
     <div class="search-header">
         <input type="text" placeholder="Buscar manga...">
+    </div>
+    
+    <div class="nav-links">
+        <a href="login.html">Login</a>
+        <a href="registro.html">Registro</a>
     </div>
 </header>
 
