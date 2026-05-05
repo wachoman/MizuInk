@@ -29,7 +29,7 @@ header a {
     text-decoration:none;
 }
 
-/* BUSCADOR ARRIBA (MEJORADO) */
+/* BUSCADOR */
 .search-header input {
     width:320px;
     padding:10px 15px;
@@ -88,7 +88,7 @@ header a {
 /* GRID */
 .grid {
     display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(180px,1fr));
+    grid-template-columns:repeat(auto-fit, minmax(160px,1fr));
     gap:20px;
 }
 
@@ -108,7 +108,7 @@ header a {
 
 .card img {
     width:100%;
-    height:250px;
+    height:320px;
     object-fit:cover;
 }
 
@@ -133,14 +133,18 @@ footer {
     display:flex;
     justify-content:space-between;
     align-items:flex-start;
-    padding:20px;
+    padding:25px 30px;
     background:#8E9AAF;
     color:white;
 }
 
-/* CONTACTO A LA DERECHA EN LISTA */
+/* CONTACTO MÁS VISIBLE */
 .contact-banner {
     text-align:right;
+    background:#6C7A89;
+    padding:15px 20px;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
 }
 
 .contact-banner ul {
@@ -150,17 +154,21 @@ footer {
 }
 
 .contact-banner li {
-    margin:5px 0;
+    margin:8px 0;
 }
 
 .contact-banner a {
     color:white;
     text-decoration:none;
-    font-size:14px;
+    font-size:16px;
+    font-weight:bold;
+    display:block;
+    transition:0.3s;
 }
 
 .contact-banner a:hover {
-    text-decoration:underline;
+    transform:translateX(-5px);
+    color:#FFDADA;
 }
 </style>
 
@@ -170,7 +178,6 @@ footer {
 <header>
     <h1>MizuInk</h1>
 
-    <!-- BUSCADOR MÁS ARRIBA -->
     <div class="search-header">
         <input type="text" placeholder="Buscar manga...">
     </div>
@@ -252,7 +259,6 @@ footer {
 <footer>
     <p>MizuInk © 2026</p>
 
-    <!-- CONTACTO DERECHA EN LISTA -->
     <div class="contact-banner">
         <ul>
             <li><a href="mailto:tucorreo@gmail.com" target="_blank">📧 Correo</a></li>
