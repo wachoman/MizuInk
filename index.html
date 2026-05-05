@@ -22,8 +22,34 @@ header {
     justify-content:space-between;
     gap:15px;
     color:white;
+    flex-wrap:wrap; /* 🔥 permite el menú abajo */
 }
 
+/* 🔥 MENU */
+.menu {
+    width:100%;
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-top:5px;
+}
+
+.menu a {
+    color:white;
+    text-decoration:none;
+    padding:8px 15px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.1);
+    transition:0.3s;
+    font-size:14px;
+}
+
+.menu a:hover {
+    background:rgba(255,255,255,0.3);
+    transform:translateY(-2px);
+}
+
+/* SEARCH */
 .search-header {
     flex:1;
     display:flex;
@@ -38,6 +64,7 @@ header {
     border:none;
 }
 
+/* LOGIN */
 .nav-links {
     display:flex;
     gap:10px;
@@ -162,7 +189,7 @@ footer {
     color:white;
 }
 
-/* CONTACTO MEJORADO */
+/* CONTACTO */
 .contact-banner {
     margin-top:20px;
     background:#6C7A89;
@@ -242,7 +269,6 @@ footer {
     line-height:1.6;
 }
 
-/* BOTONES MODAL CENTRADOS */
 .modal-buttons {
     display:flex;
     justify-content:center;
@@ -269,7 +295,6 @@ footer {
 /* RESPONSIVE */
 @media (max-width:768px) {
     header {
-        flex-wrap:wrap;
         justify-content:center;
     }
 
@@ -281,6 +306,10 @@ footer {
 
     .nav-links {
         order:2;
+    }
+
+    .menu {
+        flex-wrap:wrap;
     }
 
     .card img {
@@ -302,7 +331,7 @@ footer {
 <div id="ageModal" class="modal hidden">
     <div class="modal-content">
         <h2>Bienvenidos a MizuInk</h2>
-        <p>ADVERTENCIA DE CONTENIDO (+18): Este sitio web contiene material gráfico explícito de temática BL / Yaoi destinado exclusivamente a un público adulto. Al acceder a esta página, declaras bajo tu propia responsabilidad que tienes 18 años o más (o la mayoría de edad legal en tu país), que no te sientes ofendido por este tipo de contenido y que aceptas nuestro Aviso de Privacidad.</p>
+        <p>ADVERTENCIA DE CONTENIDO (+18): Este sitio web contiene material gráfico explícito de temática BL / Yaoi destinado exclusivamente a un público adulto...</p>
 
         <div class="modal-buttons">
             <button onclick="aceptarEdad()" class="btn-yes">Sí, soy mayor</button>
@@ -322,6 +351,15 @@ footer {
         <a href="login.html">Login</a>
         <a href="registro.html">Registro</a>
     </div>
+
+    <!-- 🔥 MENÚ -->
+    <nav class="menu">
+        <a href="#">Inicio</a>
+        <a href="#">Mangas</a>
+        <a href="#">Manhwa</a>
+        <a href="#">One Shot</a>
+        <a href="#">Manhua</a>
+    </nav>
 </header>
 
 <section class="hero">
