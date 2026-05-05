@@ -94,10 +94,8 @@ header a {
     z-index: -1;
 }
 
-/* 🔥 TEXTO DEL BANNER REDUCIDO */
 .overlay h1 {
     font-size: clamp(16px, 3vw, 24px);
-    text-shadow: 0 3px 10px rgba(0,0,0,0.8);
 }
 
 /* SECCIONES */
@@ -164,7 +162,7 @@ footer {
     color:white;
 }
 
-/* CONTACTO */
+/* CONTACTO MEJORADO */
 .contact-banner {
     margin-top:20px;
     background:#6C7A89;
@@ -244,7 +242,7 @@ footer {
     line-height:1.6;
 }
 
-/* BOTONES MODAL */
+/* BOTONES MODAL CENTRADOS */
 .modal-buttons {
     display:flex;
     justify-content:center;
@@ -304,7 +302,7 @@ footer {
 <div id="ageModal" class="modal hidden">
     <div class="modal-content">
         <h2>Bienvenidos a MizuInk</h2>
-        <p>ADVERTENCIA DE CONTENIDO (+18): Este sitio web contiene material gráfico explícito de temática BL / Yaoi destinado exclusivamente a un público adulto...</p>
+        <p>ADVERTENCIA DE CONTENIDO (+18): Este sitio web contiene material gráfico explícito de temática BL / Yaoi destinado exclusivamente a un público adulto. Al acceder a esta página, declaras bajo tu propia responsabilidad que tienes 18 años o más (o la mayoría de edad legal en tu país), que no te sientes ofendido por este tipo de contenido y que aceptas nuestro Aviso de Privacidad.</p>
 
         <div class="modal-buttons">
             <button onclick="aceptarEdad()" class="btn-yes">Sí, soy mayor</button>
@@ -335,6 +333,25 @@ footer {
     <div class="overlay">
         <h1>Descubre los mejores mangas BL / Yaoi</h1>
     </div>
+</section>
+
+<section class="section">
+<h2>🔥 Populares</h2>
+<div class="grid">
+<div class="card"><img src="Jinx.jpg"><h3>Jinx</h3><button class="btn">Leer</button></div>
+<div class="card"><img src="Painter.jpg"><h3>Painter of the Night</h3><button class="btn">Leer</button></div>
+<div class="card"><img src="Love.jpg"><h3>Love is an Illusion</h3><button class="btn">Leer</button></div>
+<div class="card"><img src="Error.jpg"><h3>Semantic Error</h3><button class="btn">Leer</button></div>
+</div>
+</section>
+
+<section class="section">
+<h2>🆕 Nuevos</h2>
+<div class="grid">
+<div class="card"><img src="Jujutsu.jpg"><h3>Jujutsu Kaisen</h3><button class="btn">Leer</button></div>
+<div class="card"><img src="Jojo.jpg"><h3>Jojo's Bizarre Adventure</h3><button class="btn">Leer</button></div>
+<div class="card"><img src="One.jpg"><h3>One Piece</h3><button class="btn">Leer</button></div>
+</div>
 </section>
 
 <footer>
@@ -370,6 +387,27 @@ function cambiarSlide() {
     slides[index].classList.add("active");
 }
 setInterval(cambiarSlide, 3000);
+
+document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById("ageModal");
+
+    if(localStorage.getItem("edadAceptada") === "true") {
+        modal.classList.add("hidden");
+    } else {
+        modal.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+    }
+});
+
+function aceptarEdad() {
+    localStorage.setItem("edadAceptada", "true");
+    document.getElementById("ageModal").classList.add("hidden");
+    document.body.style.overflow = "auto";
+}
+
+function salirPagina() {
+    window.location.href = "https://www.google.com";
+}
 </script>
 
 </body>
