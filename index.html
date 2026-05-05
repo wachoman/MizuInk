@@ -21,7 +21,6 @@ header {
     justify-content:space-between;
     align-items:center;
     color:white;
-    flex-wrap:wrap;
 }
 
 header a {
@@ -30,19 +29,14 @@ header a {
     text-decoration:none;
 }
 
-/* BUSCADOR ARRIBA */
-.search-header {
-    width:100%;
-    text-align:center;
-    margin-top:10px;
-}
-
+/* BUSCADOR ARRIBA (MEJORADO) */
 .search-header input {
-    width:220px;
-    padding:6px 10px;
-    border-radius:20px;
+    width:320px;
+    padding:10px 15px;
+    border-radius:25px;
     border:none;
-    font-size:13px;
+    font-size:15px;
+    margin-left:20px;
 }
 
 /* HERO */
@@ -136,33 +130,37 @@ header a {
 
 /* FOOTER */
 footer {
-    text-align:center;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
     padding:20px;
     background:#8E9AAF;
     color:white;
 }
 
-/* BANNER CONTACTO */
+/* CONTACTO A LA DERECHA EN LISTA */
 .contact-banner {
-    margin-top:15px;
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    flex-wrap:wrap;
+    text-align:right;
+}
+
+.contact-banner ul {
+    list-style:none;
+    padding:0;
+    margin:0;
+}
+
+.contact-banner li {
+    margin:5px 0;
 }
 
 .contact-banner a {
-    background:#6C7A89;
-    padding:10px 15px;
-    border-radius:10px;
     color:white;
     text-decoration:none;
-    transition:0.3s;
     font-size:14px;
 }
 
 .contact-banner a:hover {
-    background:#4f5d6a;
+    text-decoration:underline;
 }
 </style>
 
@@ -171,15 +169,15 @@ footer {
 
 <header>
     <h1>MizuInk</h1>
+
+    <!-- BUSCADOR MÁS ARRIBA -->
+    <div class="search-header">
+        <input type="text" placeholder="Buscar manga...">
+    </div>
     
     <div>
         <a href="login.html">Login</a>
         <a href="registro.html">Registro</a>
-    </div>
-
-    <!-- BUSCADOR ARRIBA -->
-    <div class="search-header">
-        <input type="text" placeholder="Buscar manga...">
     </div>
 </header>
 
@@ -254,11 +252,13 @@ footer {
 <footer>
     <p>MizuInk © 2026</p>
 
-    <!-- BANNER DE CONTACTO -->
+    <!-- CONTACTO DERECHA EN LISTA -->
     <div class="contact-banner">
-        <a href="mailto:tucorreo@gmail.com" target="_blank">📧 Correo</a>
-        <a href="https://t.me/tuusuario" target="_blank">📱 Telegram</a>
-        <a href="https://discord.gg/tulink" target="_blank">💬 Discord</a>
+        <ul>
+            <li><a href="mailto:tucorreo@gmail.com" target="_blank">📧 Correo</a></li>
+            <li><a href="https://t.me/tuusuario" target="_blank">📱 Telegram</a></li>
+            <li><a href="https://discord.gg/tulink" target="_blank">💬 Discord</a></li>
+        </ul>
     </div>
 </footer>
 
