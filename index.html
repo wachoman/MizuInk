@@ -16,11 +16,12 @@ body {
 /* HEADER */
 header {
     background:#8E9AAF;
-    padding:15px 30px;
+    padding:10px 20px;
     display:flex;
     justify-content:space-between;
     align-items:center;
     color:white;
+    flex-wrap:wrap;
 }
 
 header a {
@@ -29,14 +30,28 @@ header a {
     text-decoration:none;
 }
 
-/* HERO (CARRUSEL) */
+/* BUSCADOR ARRIBA */
+.search-header {
+    width:100%;
+    text-align:center;
+    margin-top:10px;
+}
+
+.search-header input {
+    width:220px;
+    padding:6px 10px;
+    border-radius:20px;
+    border:none;
+    font-size:13px;
+}
+
+/* HERO */
 .hero {
     position: relative;
     height: 320px;
     overflow: hidden;
 }
 
-/* SLIDES */
 .slide {
     position: absolute;
     width: 100%;
@@ -51,7 +66,6 @@ header a {
     opacity: 1;
 }
 
-/* TEXTO ENCIMA */
 .overlay {
     position: relative;
     z-index: 2;
@@ -66,19 +80,6 @@ header a {
 
 .overlay h1 {
     font-size: 38px;
-}
-
-/* BUSCADOR */
-.search {
-    text-align:center;
-    margin:20px;
-}
-
-.search input {
-    width:60%;
-    padding:12px;
-    border-radius:25px;
-    border:1px solid #ccc;
 }
 
 /* SECCIONES */
@@ -136,9 +137,32 @@ header a {
 /* FOOTER */
 footer {
     text-align:center;
-    padding:15px;
+    padding:20px;
     background:#8E9AAF;
     color:white;
+}
+
+/* BANNER CONTACTO */
+.contact-banner {
+    margin-top:15px;
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.contact-banner a {
+    background:#6C7A89;
+    padding:10px 15px;
+    border-radius:10px;
+    color:white;
+    text-decoration:none;
+    transition:0.3s;
+    font-size:14px;
+}
+
+.contact-banner a:hover {
+    background:#4f5d6a;
 }
 </style>
 
@@ -147,15 +171,20 @@ footer {
 
 <header>
     <h1>MizuInk</h1>
+    
     <div>
         <a href="login.html">Login</a>
         <a href="registro.html">Registro</a>
     </div>
+
+    <!-- BUSCADOR ARRIBA -->
+    <div class="search-header">
+        <input type="text" placeholder="Buscar manga...">
+    </div>
 </header>
 
-<!-- HERO CARRUSEL -->
+<!-- HERO -->
 <section class="hero">
-
     <div class="slide active" style="background-image:url('Jinx.jpg')"></div>
     <div class="slide" style="background-image:url('Painter.jpg')"></div>
     <div class="slide" style="background-image:url('Love.jpg')"></div>
@@ -164,20 +193,13 @@ footer {
     <div class="overlay">
         <h1>Descubre los mejores mangas BL / Yaoi</h1>
     </div>
-
 </section>
-
-<!-- BUSCADOR -->
-<div class="search">
-    <input type="text" placeholder="Buscar manga...">
-</div>
 
 <!-- POPULARES -->
 <section class="section">
 <h2>🔥 Populares</h2>
 
 <div class="grid">
-
 <div class="card">
     <img src="Jinx.jpg">
     <h3>Jinx</h3>
@@ -201,7 +223,6 @@ footer {
     <h3>Semantic Error</h3>
     <button class="btn">Leer</button>
 </div>
-
 </div>
 </section>
 
@@ -210,7 +231,6 @@ footer {
 <h2>🆕 Nuevos</h2>
 
 <div class="grid">
-
 <div class="card">
     <img src="Jujutsu.jpg">
     <h3>Jujutsu Kaisen</h3>
@@ -228,15 +248,20 @@ footer {
     <h3>One Piece</h3>
     <button class="btn">Leer</button>
 </div>
-
 </div>
 </section>
 
 <footer>
     <p>MizuInk © 2026</p>
+
+    <!-- BANNER DE CONTACTO -->
+    <div class="contact-banner">
+        <a href="mailto:tucorreo@gmail.com" target="_blank">📧 Correo</a>
+        <a href="https://t.me/tuusuario" target="_blank">📱 Telegram</a>
+        <a href="https://discord.gg/tulink" target="_blank">💬 Discord</a>
+    </div>
 </footer>
 
-<!-- SCRIPT CARRUSEL -->
 <script>
 let slides = document.querySelectorAll(".slide");
 let index = 0;
