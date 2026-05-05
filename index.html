@@ -36,7 +36,6 @@ header a {
     border-radius:25px;
     border:none;
     font-size:15px;
-    margin-left:20px;
 }
 
 /* HERO */
@@ -72,19 +71,6 @@ header a {
     background: rgba(0,0,0,0.4);
 }
 
-.overlay h1 {
-    font-size: 38px;
-}
-
-/* SECCIONES */
-.section {
-    padding:20px;
-}
-
-.section h2 {
-    margin-bottom:15px;
-}
-
 /* GRID */
 .grid {
     display:grid;
@@ -92,18 +78,11 @@ header a {
     gap:20px;
 }
 
-/* CARD */
 .card {
     background:white;
     border-radius:15px;
     overflow:hidden;
     box-shadow:0 5px 15px rgba(0,0,0,0.1);
-    transition:0.3s;
-    cursor:pointer;
-}
-
-.card:hover {
-    transform:translateY(-10px);
 }
 
 .card img {
@@ -112,71 +91,38 @@ header a {
     object-fit:cover;
 }
 
-.card h3 {
-    padding:10px;
-    font-size:16px;
-}
-
-/* BOTON */
-.btn {
-    margin:10px;
-    padding:8px;
-    background:#B78D8D;
-    border:none;
-    color:white;
-    border-radius:8px;
-    width:calc(100% - 20px);
-}
-
 /* FOOTER */
 footer {
     display:flex;
     justify-content:space-between;
-    align-items:flex-start;
-    padding:25px 30px;
+    padding:25px;
     background:#8E9AAF;
     color:white;
 }
 
 /* CONTACTO */
 .contact-banner {
-    text-align:right;
     background:#6C7A89;
-    padding:15px 20px;
+    padding:15px;
     border-radius:12px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.2);
 }
 
-.contact-banner ul {
-    list-style:none;
-    padding:0;
-    margin:0;
-}
-
-.contact-banner li {
-    margin:8px 0;
-}
-
-.contact-banner a {
-    color:white;
-    text-decoration:none;
-    font-size:16px;
-    font-weight:bold;
-}
-
-/* MODAL CON PALETA */
+/* MODAL */
 .modal {
     position: fixed;
     top:0;
     left:0;
     width:100%;
     height:100%;
-    background: rgba(142,154,175,0.85);
-    backdrop-filter: blur(5px);
+    background: rgba(142,154,175,0.9);
     display:flex;
     justify-content:center;
     align-items:center;
     z-index:9999;
+}
+
+.modal.hidden {
+    display:none;
 }
 
 .modal-content {
@@ -186,7 +132,6 @@ footer {
     max-width:520px;
     text-align:center;
     border:2px solid #8E9AAF;
-    box-shadow:0 8px 25px rgba(0,0,0,0.2);
 }
 
 .modal-buttons {
@@ -215,22 +160,16 @@ footer {
     cursor:pointer;
 }
 </style>
-
 </head>
+
 <body>
 
 <!-- MODAL -->
-<div id="ageModal" class="modal">
+<div id="ageModal" class="modal hidden">
     <div class="modal-content">
         <h2>⚠️ Bienvenidos a MizuInk</h2>
-        <p>
-        Somos un espacio dedicado a la difusión y apreciación del género Boys' Love.
-        Aquí encontrarás una selección curada de mangas, desde historias dulces y escolares hasta tramas intensas y maduras.
-        </p>
-
-        <p><strong>ADVERTENCIA:</strong> Este sitio contiene material gráfico que representa relaciones románticas y sexuales entre hombres.
-        Al acceder, confirmas que eres mayor de edad (18+) según las leyes de tu país y que el contenido es legal en tu jurisdicción.
-        </p>
+        <p>Somos un espacio dedicado a la difusión y apreciación del género Boys' Love.</p>
+        <p><strong>ADVERTENCIA:</strong> Contenido +18.</p>
 
         <div class="modal-buttons">
             <button onclick="aceptarEdad()" class="btn-yes">Sí, soy mayor de edad</button>
@@ -244,75 +183,34 @@ footer {
     <div class="search-header">
         <input type="text" placeholder="Buscar manga...">
     </div>
-    <div>
-        <a href="login.html">Login</a>
-        <a href="registro.html">Registro</a>
-    </div>
 </header>
 
 <section class="hero">
     <div class="slide active" style="background-image:url('Jinx.jpg')"></div>
-    <div class="slide" style="background-image:url('Painter.jpg')"></div>
-    <div class="slide" style="background-image:url('Love.jpg')"></div>
-    <div class="slide" style="background-image:url('Error.jpg')"></div>
-
-    <div class="overlay">
-        <h1>Descubre los mejores mangas BL / Yaoi</h1>
-    </div>
-</section>
-
-<section class="section">
-<h2>🔥 Populares</h2>
-<div class="grid">
-<div class="card"><img src="Jinx.jpg"><h3>Jinx</h3><button class="btn">Leer</button></div>
-<div class="card"><img src="Painter.jpg"><h3>Painter of the Night</h3><button class="btn">Leer</button></div>
-<div class="card"><img src="Love.jpg"><h3>Love is an Illusion</h3><button class="btn">Leer</button></div>
-<div class="card"><img src="Error.jpg"><h3>Semantic Error</h3><button class="btn">Leer</button></div>
-</div>
-</section>
-
-<section class="section">
-<h2>🆕 Nuevos</h2>
-<div class="grid">
-<div class="card"><img src="Jujutsu.jpg"><h3>Jujutsu Kaisen</h3><button class="btn">Leer</button></div>
-<div class="card"><img src="Jojo.jpg"><h3>Jojo's Bizarre Adventure</h3><button class="btn">Leer</button></div>
-<div class="card"><img src="One.jpg"><h3>One Piece</h3><button class="btn">Leer</button></div>
-</div>
 </section>
 
 <footer>
     <p>MizuInk © 2026</p>
-    <div class="contact-banner">
-        <ul>
-            <li><a href="mailto:tucorreo@gmail.com">📧 Correo</a></li>
-            <li><a href="https://t.me/tuusuario">📱 Telegram</a></li>
-            <li><a href="https://discord.gg/tulink">💬 Discord</a></li>
-        </ul>
-    </div>
+    <div class="contact-banner">Contacto</div>
 </footer>
 
 <script>
-// CARRUSEL
-let slides = document.querySelectorAll(".slide");
-let index = 0;
+// CONTROL MODAL CORREGIDO
+document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById("ageModal");
 
-function cambiarSlide() {
-    slides[index].classList.remove("active");
-    index = (index + 1) % slides.length;
-    slides[index].classList.add("active");
-}
-setInterval(cambiarSlide, 3000);
-
-// MODAL
-window.onload = function() {
-    if(localStorage.getItem("edadAceptada")) {
-        document.getElementById("ageModal").style.display = "none";
+    if(localStorage.getItem("edadAceptada") === "true") {
+        modal.classList.add("hidden");
+    } else {
+        modal.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
     }
-}
+});
 
 function aceptarEdad() {
     localStorage.setItem("edadAceptada", "true");
-    document.getElementById("ageModal").style.display = "none";
+    document.getElementById("ageModal").classList.add("hidden");
+    document.body.style.overflow = "auto";
 }
 
 function salirPagina() {
